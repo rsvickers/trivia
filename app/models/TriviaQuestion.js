@@ -2,7 +2,7 @@ export class TriviaQuestion {
     constructor(data) {
         this.question = data.question
         this.correctAnswer = data.correct_answer
-        this.incorrectAnswer = data.incorrect_answers
+        this.incorrectAnswers = data.incorrect_answers || []
     }
 
     get TriviaQuestionTemplate() {
@@ -14,14 +14,18 @@ export class TriviaQuestion {
       </section>
 
       <section class="row p-5 justify-content-evenly">
-        <div class="col-4 questionBox">
+        <div class="col-5 questionBox">
           <p class="text-center fs-4 funFont">${this.correctAnswer}</p>
         </div>
-        <div class="col-4 questionBox">
-          <p class="text-center fs-4 funFont">${this.incorrectAnswer}</p>
-        </div>
+          ${this.IncorrectAnswerItem}
       </section>
 `
+    }
+
+    get IncorrectAnswerItem() {
+        let content = ''
+        this.incorrectAnswers.forEach(incorrectAnswer => content += `  <div class="col-5 questionBox"> <p class="text-center fs-4 funFont">${incorrectAnswer}</p> </div>`)
+        return content
     }
 
 }
@@ -29,14 +33,14 @@ export class TriviaQuestion {
 
 
 // const triviaData = {
-//     {
-//     "category": "Entertainment: Japanese Anime & Manga",
-//         "type": "boolean",
-//             "difficulty": "easy",
-//                 "question": "In the 1988 film &quot;Akira&quot;, Tetsuo ends up destroying Tokyo.",
-//                     "correct_answer": "True",
-//                         "incorrect_answers": [
-//                             "False"
-//                         ]
+
+// {
+//     "question": "Which band name isn&#039;t a Stand in &quot;JoJo&#039;s Bizzare Adventure&quot;?",
+//         "correctAnswer": "AC/DC",
+//             "incorrectAnswer": [
+//                 "Green Day",
+//                 "Survivor",
+//                 "Red Hot Chili Peppers"
+//             ]
 // }
-// }
+

@@ -5,7 +5,7 @@ import { TriviaQuestion } from "../models/TriviaQuestion.js"
 
 class TriviaQuestionsService {
     async getTriviaQuestions() {
-        const response = await axios.get('https://opentdb.com/api.php?amount=22&category=31&type=boolean')
+        const response = await axios.get('https://opentdb.com/api.php?amount=5&category=31')
 
         console.log('GOT QUESTIONS', response.data);
 
